@@ -91,15 +91,19 @@ h1, h2, h3 { font-family: var(--fonte-titulo); font-weight: 700; line-height: 1.
 
 @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
 
-/* ===== Selo de avaliação ===== */
-.selo-avaliacao {
+/* ===== Avaliações do Google (carrossel compacto) ===== */
+.avaliacoes-google {
   background: var(--branco); border-radius: var(--raio); box-shadow: var(--sombra);
-  padding: 24px 28px; display: flex; gap: 18px; align-items: center;
-  margin: 0 auto 56px; max-width: 640px;
+  padding: 18px 24px; display: flex; gap: 16px; align-items: center;
+  margin: 0 auto 56px; max-width: 480px;
 }
-.selo-nota { font-family: var(--fonte-titulo); font-size: 2rem; font-weight: 700; color: var(--acento); }
-.estrelas { color: #e8b13b; letter-spacing: 2px; }
-.selo-avaliacao blockquote { margin: 4px 0 0; font-style: italic; color: var(--texto-suave); }
+.avaliacoes-nota { display: flex; flex-direction: column; align-items: center; line-height: 1.1; flex-shrink: 0; }
+.avaliacoes-numero { font-family: var(--fonte-titulo); font-size: 1.4rem; font-weight: 700; color: var(--acento); }
+.avaliacoes-estrelas { color: #e8b13b; font-size: .8rem; letter-spacing: 1px; }
+.avaliacoes-trilho { position: relative; flex: 1; min-height: 2.8em; }
+.avaliacoes-slide { display: none; margin: 0; font-size: .85rem; font-style: italic; color: var(--texto-suave); }
+.avaliacoes-slide.ativo { display: block; }
+.avaliacoes-slide cite { display: block; margin-top: 4px; font-style: normal; font-weight: 600; font-size: .72rem; color: var(--texto-suave); }
 
 /* ===== Cards de etapas (home) ===== */
 .grade-etapas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -160,8 +164,14 @@ h1, h2, h3 { font-family: var(--fonte-titulo); font-weight: 700; line-height: 1.
 .marca-rodape { color: #fff; font-family: var(--fonte-titulo); font-weight: 700; font-size: 1.2rem; margin-bottom: 10px; }
 .marca-rodape span { color: #e8c2c2; }
 .nota { font-size: .8rem; opacity: .7; }
-.mapa { width: 100%; height: 280px; border: 0; border-radius: var(--raio); margin-bottom: 24px; }
+.mapa { width: 100%; height: 280px; border: 0; border-radius: var(--raio); }
 .copy { text-align: center; font-size: .8rem; opacity: .7; }
+
+/* ===== Rodapé: mapa ao lado de uma frase sobre as crianças ===== */
+.rodape-mapa-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 32px; align-items: center; margin-bottom: 24px; }
+.frase-criancas { font-family: var(--fonte-titulo); font-style: italic; font-size: 1.2rem; line-height: 1.4; color: #fff; margin: 0 0 18px; }
+
+@media (max-width: 860px) { .rodape-mapa-grid { grid-template-columns: 1fr; } }
 
 @media (max-width: 860px) { .rodape-grid { grid-template-columns: 1fr; } }
 
@@ -232,16 +242,3 @@ h1, h2, h3 { font-family: var(--fonte-titulo); font-weight: 700; line-height: 1.
 .carrossel-ponto.ativo { background: #fff; }
 
 @media (max-width: 700px) { .carrossel-slide { padding: 36px 48px; } }
-
-/* ===== Cursor interativo (telas com mouse de precisão) ===== */
-body.cursor-ativo, body.cursor-ativo a, body.cursor-ativo button, body.cursor-ativo .botao { cursor: none; }
-.cursor-ponto, .cursor-anel {
-  position: fixed; top: 0; left: 0; border-radius: 50%; pointer-events: none; z-index: 9999;
-  transform: translate(-50%, -50%);
-}
-.cursor-ponto { width: 8px; height: 8px; background: var(--vermelho); }
-.cursor-anel {
-  width: 34px; height: 34px; border: 2px solid rgba(27, 79, 140, .5);
-  transition: width .2s, height .2s, border-color .2s;
-}
-.cursor-anel.cursor-hover { width: 54px; height: 54px; border-color: var(--azul); }

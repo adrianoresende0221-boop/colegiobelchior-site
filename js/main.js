@@ -107,38 +107,17 @@ document.addEventListener('DOMContentLoaded', function () {
     rootEl.addEventListener('mouseenter', function () { clearInterval(auto); });
   });
 
-  // ===== Cursor interativo (só em dispositivos com mouse de precisão) =====
-  if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
-    document.body.classList.add('cursor-ativo');
-    var ponto = document.createElement('div');
-    ponto.className = 'cursor-ponto';
-    var anel = document.createElement('div');
-    anel.className = 'cursor-anel';
-    document.body.appendChild(ponto);
-    document.body.appendChild(anel);
-
-    var mouseX = 0, mouseY = 0, anelX = 0, anelY = 0;
-    document.addEventListener('mousemove', function (e) {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      ponto.style.left = mouseX + 'px';
-      ponto.style.top = mouseY + 'px';
-    });
-
-    function loopCursor() {
-      anelX += (mouseX - anelX) * 0.18;
-      anelY += (mouseY - anelY) * 0.18;
-      anel.style.left = anelX + 'px';
-      anel.style.top = anelY + 'px';
-      requestAnimationFrame(loopCursor);
-    }
-    loopCursor();
-
-    document.addEventListener('mouseover', function (e) {
-      if (e.target.closest('a, button, .cartao-etapa, .carrossel-slide')) anel.classList.add('cursor-hover');
-    });
-    document.addEventListener('mouseout', function (e) {
-      if (e.target.closest('a, button, .cartao-etapa, .carrossel-slide')) anel.classList.remove('cursor-hover');
-    });
-  }
+  // ===== Carrossel de avaliações do Google =====
+  document.querySelectorAll('.avaliacoes-trilho').forEach(function (trilho) {
+    var slides = Array.prototype.slice.call(trilho.querySelectorAll('.avaliacoes-slide'));
+    if (!slides.length) return;
+    slides.forEach(function (s, i) { s.classList.toggle('ativo', i === 0); });
+    if (slides.length < 2) return;
+    var i = 0;
+    setInterval(function () {
+      slides[i].classList.remove('ativo');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('ativo');
+    }, 5000);
+  });
 });
