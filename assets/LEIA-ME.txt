@@ -1,0 +1,13 @@
+Coloque aqui as imagens reais da escola (você já mostrou no chat, mas eu não consigo
+extrair o arquivo de uma imagem de chat — precisa arrastar o arquivo original aqui):
+
+- logo.png — logo completo ("Centro Educacional Caminho Suave — Colégio Belchior Costa")
+- logo-compacto.png — versão compacta ("Colégio Belchior Costa")
+- fachada.jpg — foto da fachada/entrada (a que você mandou, com a faixa vermelha de sinalização)
+- playground.jpg — foto do playground
+- infantil-1.jpg, fundamental1-1.jpg, fundamental2-1.jpg — fotos de turma de cada etapa (substituem os placeholders cinza nas páginas)
+
+Depois de colocar os arquivos, troque os blocos <div class="foto-placeholder">...</div>
+em cada HTML (estão em index.html, infantil/index.html, fundamental1/index.html,
+fundamental2/index.html) por <img src="../assets/NOME-DO-ARQUIVO.jpg" alt="descrição da foto">
+(no index.html da raiz é "assets/...", sem "../").

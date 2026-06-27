@@ -1,0 +1,247 @@
+/* Centro Educacional Caminho Suave — site institucional
+   Paleta e tipografia seguem identidade/design-guide.md (provisório) */
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { margin: 0; padding: 0; list-style: none; }
+button { font-family: inherit; }
+
+:root {
+  --bg: #FFFFFF;
+  --bg-alt: #F7F7F5;
+  --branco: #FFFFFF;
+  --texto: #2B2622;
+  --texto-suave: #6b5f56;
+  --azul: #1B4F8C;
+  --azul-escuro: #123a68;
+  --vermelho: #D32F2F;
+  --vermelho-escuro: #a82424;
+  --amarelo: #F2B705;
+  --amarelo-escuro: #c79600;
+  --raio: 18px;
+  --sombra: 0 10px 30px rgba(43, 38, 34, .10);
+  --fonte-titulo: 'Poppins', 'Quicksand', sans-serif;
+  --fonte-corpo: 'Nunito Sans', 'Inter', sans-serif;
+}
+
+body {
+  font-family: var(--fonte-corpo);
+  color: var(--texto);
+  background: var(--bg);
+  line-height: 1.55;
+}
+
+/* Educação Infantil = amarelo (combina com o playground); Fundamental I = azul (cor base da marca);
+   Fundamental II = vermelho (detalhe de sinalização). Texto do botão muda pra escuro sobre amarelo (contraste). */
+body.tema-infantil { --acento: var(--amarelo); --acento-escuro: var(--amarelo-escuro); --acento-texto: var(--texto); }
+body.tema-fund1, body.tema-home { --acento: var(--azul); --acento-escuro: var(--azul-escuro); --acento-texto: #fff; }
+body.tema-fund2 { --acento: var(--vermelho); --acento-escuro: var(--vermelho-escuro); --acento-texto: #fff; }
+
+h1, h2, h3 { font-family: var(--fonte-titulo); font-weight: 700; line-height: 1.2; margin: 0 0 .5em; }
+.container { width: min(1100px, 92%); margin-inline: auto; }
+.secao { padding: 56px 0; }
+.secao-titulo { text-align: center; max-width: 640px; margin: 0 auto 40px; }
+.secao-titulo p { color: var(--texto-suave); }
+
+/* ===== Topo ===== */
+.topo {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(251, 246, 240, .95);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(43, 38, 34, .06);
+}
+.topo-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+.marca { font-family: var(--fonte-titulo); font-weight: 700; font-size: 1.3rem; color: var(--azul); }
+.marca span { color: var(--vermelho); }
+.nav { display: flex; align-items: center; gap: 20px; }
+.nav a { font-weight: 600; font-size: .92rem; white-space: nowrap; }
+.nav a:hover { color: var(--acento); }
+.nav a.ativo { color: var(--acento); }
+.nav-cta { background: var(--acento); color: #fff !important; padding: 10px 18px; border-radius: 999px; }
+.hamburguer { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 6px; }
+.hamburguer span { width: 24px; height: 2px; background: var(--texto); display: block; }
+
+@media (max-width: 860px) {
+  .nav {
+    position: fixed; inset: 64px 0 0 0; background: var(--bg);
+    flex-direction: column; align-items: flex-start; padding: 24px 6%; gap: 18px;
+    transform: translateY(-110%); transition: transform .25s ease; overflow-y: auto;
+  }
+  .nav.nav-aberta { transform: translateY(0); }
+  .hamburguer { display: flex; }
+}
+
+/* ===== Hero ===== */
+.hero { padding: 64px 0 48px; }
+.voltar { font-weight: 700; color: var(--acento); display: inline-block; margin-bottom: 18px; }
+.hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+.hero h1 { font-size: clamp(2rem, 4vw, 2.8rem); }
+.hero p.subtitulo { font-size: 1.15rem; color: var(--texto-suave); margin-bottom: 28px; }
+.botoes { display: flex; gap: 14px; flex-wrap: wrap; }
+.botao { display: inline-block; padding: 14px 26px; border-radius: 999px; font-weight: 700; border: 0; cursor: pointer; font-size: 1rem; }
+.botao-principal { background: var(--acento); color: var(--acento-texto, #fff); }
+.botao-secundario { background: var(--branco); color: var(--texto); border: 1px solid rgba(43, 38, 34, .15); }
+.foto-placeholder {
+  background: var(--bg-alt); border: 2px dashed rgba(27, 79, 140, .3); border-radius: var(--raio);
+  aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;
+  color: var(--texto-suave); font-size: .9rem; text-align: center; padding: 20px;
+}
+
+@media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+
+/* ===== Selo de avaliação ===== */
+.selo-avaliacao {
+  background: var(--branco); border-radius: var(--raio); box-shadow: var(--sombra);
+  padding: 24px 28px; display: flex; gap: 18px; align-items: center;
+  margin: 0 auto 56px; max-width: 640px;
+}
+.selo-nota { font-family: var(--fonte-titulo); font-size: 2rem; font-weight: 700; color: var(--acento); }
+.estrelas { color: #e8b13b; letter-spacing: 2px; }
+.selo-avaliacao blockquote { margin: 4px 0 0; font-style: italic; color: var(--texto-suave); }
+
+/* ===== Cards de etapas (home) ===== */
+.grade-etapas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.cartao-etapa {
+  background: var(--branco); border-radius: var(--raio); padding: 28px;
+  box-shadow: var(--sombra); border-top: 5px solid var(--cor-cartao, var(--azul));
+}
+.cartao-etapa.infantil { --cor-cartao: var(--amarelo); }
+.cartao-etapa.fund1 { --cor-cartao: var(--azul); }
+.cartao-etapa.fund2 { --cor-cartao: var(--vermelho); }
+.cartao-etapa h3 { margin-bottom: 8px; }
+.cartao-etapa p { color: var(--texto-suave); margin-bottom: 14px; }
+.cartao-etapa a.saiba-mais { color: var(--cor-cartao, var(--azul)); font-weight: 700; }
+
+@media (max-width: 860px) { .grade-etapas { grid-template-columns: 1fr; } }
+
+/* ===== Pilares (páginas de etapa) ===== */
+.grade-pilares { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.pilar { background: var(--bg-alt); border-radius: var(--raio); padding: 24px; }
+.pilar h3 { color: var(--acento-escuro); font-size: 1.05rem; }
+.pilar p { color: var(--texto-suave); margin: 0; }
+
+@media (max-width: 700px) { .grade-pilares { grid-template-columns: 1fr; } }
+
+/* ===== Diferenciais ===== */
+.lista-diferenciais { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.lista-diferenciais li { background: var(--branco); border-radius: 12px; padding: 14px 18px; box-shadow: var(--sombra); font-weight: 600; }
+
+@media (max-width: 700px) { .lista-diferenciais { grid-template-columns: 1fr; } }
+
+/* ===== Instagram ===== */
+.bloco-instagram { text-align: center; background: var(--branco); border-radius: var(--raio); padding: 40px; box-shadow: var(--sombra); }
+.bloco-instagram .botao { margin-top: 16px; }
+
+/* ===== Formulário ===== */
+.form-secao { background: var(--bg-alt); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.form-interesse {
+  background: var(--branco); border-radius: var(--raio); padding: 28px;
+  box-shadow: var(--sombra); display: grid; gap: 16px;
+}
+.form-interesse label { display: grid; gap: 6px; font-weight: 600; font-size: .9rem; }
+.form-interesse input, .form-interesse select {
+  padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(43, 38, 34, .15);
+  font-family: inherit; font-size: 1rem; background: var(--branco); color: var(--texto);
+}
+.form-interesse button { margin-top: 6px; }
+.form-confirmacao { display: none; font-weight: 700; color: var(--acento-escuro); }
+
+@media (max-width: 860px) { .form-grid { grid-template-columns: 1fr; } }
+
+/* ===== Rodapé ===== */
+.rodape { background: var(--texto); color: #f3ece5; padding: 56px 0 24px; margin-top: 40px; }
+.rodape a:hover { text-decoration: underline; }
+.rodape-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 32px; }
+.rodape h3 { font-size: 1rem; color: #fff; }
+.rodape p { margin: 0 0 8px; opacity: .9; }
+.marca-rodape { color: #fff; font-family: var(--fonte-titulo); font-weight: 700; font-size: 1.2rem; margin-bottom: 10px; }
+.marca-rodape span { color: #e8c2c2; }
+.nota { font-size: .8rem; opacity: .7; }
+.mapa { width: 100%; height: 280px; border: 0; border-radius: var(--raio); margin-bottom: 24px; }
+.copy { text-align: center; font-size: .8rem; opacity: .7; }
+
+@media (max-width: 860px) { .rodape-grid { grid-template-columns: 1fr; } }
+
+/* ===== WhatsApp flutuante ===== */
+.whats-flutuante {
+  position: fixed; bottom: 22px; right: 22px; width: 58px; height: 58px;
+  background: #2fae5b; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .25); z-index: 60;
+}
+.whats-flutuante svg { width: 28px; height: 28px; fill: #fff; }
+.visualmente-oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ===== Botão "como chegar" ===== */
+.botao-mapa { margin-bottom: 24px; display: inline-flex; align-items: center; gap: 8px; }
+
+/* ===== Cartão de etapa: botão extra "ver atividades" ===== */
+.cartao-etapa .acoes-cartao { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+.botao-atividades {
+  background: none; border: 1px solid rgba(43, 38, 34, .15); border-radius: 999px;
+  padding: 8px 14px; font-weight: 700; font-size: .85rem; cursor: pointer; color: var(--texto);
+}
+.botao-atividades:hover { border-color: var(--cor-cartao, var(--azul)); color: var(--cor-cartao, var(--azul)); }
+
+/* ===== Modal de atividades ===== */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(20, 16, 14, .6);
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  z-index: 200; opacity: 0; pointer-events: none; transition: opacity .2s;
+}
+.modal-overlay.aberto { opacity: 1; pointer-events: auto; }
+.modal-painel {
+  background: var(--branco); border-radius: var(--raio); max-width: 480px; width: 100%;
+  max-height: 80vh; overflow-y: auto; padding: 32px; position: relative;
+  border-top: 6px solid var(--cor-modal, var(--azul));
+}
+.modal-fechar {
+  position: absolute; top: 14px; right: 14px; background: none; border: 0;
+  font-size: 1.7rem; line-height: 1; cursor: pointer; color: var(--texto-suave);
+}
+.modal-subtitulo { color: var(--texto-suave); margin: -8px 0 0; }
+.lista-atividades { display: grid; gap: 10px; margin: 20px 0 24px; }
+.lista-atividades li { display: flex; align-items: center; gap: 12px; background: var(--bg-alt); border-radius: 12px; padding: 10px 14px; font-weight: 600; }
+.icone-atividade { font-size: 1.3rem; }
+.modal-nota { font-size: .8rem; color: var(--texto-suave); margin-top: -8px; }
+
+/* ===== Carrossel de etapas (home) ===== */
+.carrossel { position: relative; overflow: hidden; border-radius: var(--raio); box-shadow: var(--sombra); }
+.carrossel-trilho { display: flex; transition: transform .4s ease; }
+.carrossel-slide {
+  flex: 0 0 100%; padding: 48px 70px; min-height: 200px; display: flex; flex-direction: column;
+  justify-content: center; gap: 10px;
+}
+.carrossel-slide h3 { margin: 0; font-size: 1.6rem; }
+.carrossel-slide p { margin: 0; max-width: 540px; }
+.carrossel-cta { font-weight: 700; text-decoration: underline; }
+.slide-infantil { background: linear-gradient(135deg, var(--amarelo), var(--amarelo-escuro)); color: var(--texto); }
+.slide-fund1 { background: linear-gradient(135deg, var(--azul), var(--azul-escuro)); color: #fff; }
+.slide-fund2 { background: linear-gradient(135deg, var(--vermelho), var(--vermelho-escuro)); color: #fff; }
+.carrossel-seta {
+  position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, .85);
+  border: 0; width: 40px; height: 40px; border-radius: 50%; font-size: 1.4rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; z-index: 2;
+}
+.carrossel-anterior { left: 14px; }
+.carrossel-proxima { right: 14px; }
+.carrossel-pontos { position: absolute; bottom: 14px; left: 0; right: 0; display: flex; justify-content: center; gap: 8px; z-index: 2; }
+.carrossel-ponto { width: 9px; height: 9px; border-radius: 50%; background: rgba(255, 255, 255, .6); border: 0; cursor: pointer; padding: 0; }
+.carrossel-ponto.ativo { background: #fff; }
+
+@media (max-width: 700px) { .carrossel-slide { padding: 36px 48px; } }
+
+/* ===== Cursor interativo (telas com mouse de precisão) ===== */
+body.cursor-ativo, body.cursor-ativo a, body.cursor-ativo button, body.cursor-ativo .botao { cursor: none; }
+.cursor-ponto, .cursor-anel {
+  position: fixed; top: 0; left: 0; border-radius: 50%; pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+.cursor-ponto { width: 8px; height: 8px; background: var(--vermelho); }
+.cursor-anel {
+  width: 34px; height: 34px; border: 2px solid rgba(27, 79, 140, .5);
+  transition: width .2s, height .2s, border-color .2s;
+}
+.cursor-anel.cursor-hover { width: 54px; height: 54px; border-color: var(--azul); }
