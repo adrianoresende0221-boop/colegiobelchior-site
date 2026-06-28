@@ -120,4 +120,29 @@ document.addEventListener('DOMContentLoaded', function () {
       slides[i].classList.add('ativo');
     }, 5000);
   });
+
+  // ===== Parallax da foto de fundo no hero (acompanha o scroll, PC e mobile) =====
+  var fotosParallax = Array.prototype.slice.call(document.querySelectorAll('.hero-foto-fundo img'));
+  if (fotosParallax.length) {
+    var ticking = false;
+    function atualizarParallax() {
+      fotosParallax.forEach(function (img) {
+        var hero = img.closest('.hero');
+        var rect = hero.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+        var deslocamento = rect.top * -0.18;
+        img.style.transform = 'translateY(' + deslocamento + 'px)';
+      });
+      ticking = false;
+    }
+    function pedirAtualizacao() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(atualizarParallax);
+      }
+    }
+    atualizarParallax();
+    window.addEventListener('scroll', pedirAtualizacao, { passive: true });
+    window.addEventListener('resize', pedirAtualizacao);
+  }
 });
